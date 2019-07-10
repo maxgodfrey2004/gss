@@ -13,12 +13,26 @@
 # limitations under the License.
 
 CC=g++
+CFLAGS := -Wall -Wextra -Wpedantic -std=c++11
+
+SRCDIR := src
+
+CC=g++
 CFLAGS=-Wall -Wpedantic
 
-all: kmp.o rabin_karp.o
+all: gss
 
-kmp.o: kmp.h kmp.cc
-	$(CC) $(CFLAGS) -c kmp.cc
+gss: main.h main.cc $(SRCDIR)/kmp.o $(SRCDIR)/rabin_karp.o
+	$(CC) $(CFLAGS) -o gss main.cc kmp.o rabin_karp.o
 
-rabin_karp.o: rabin_karp.h rabin_karp.cc
-	$(CC) $(CFLAGS) -c rabin_karp.cc
+$(SRCDIR)/kmp.o: $(SRCDIR)/kmp.h $(SRCDIR)/kmp.cc
+	$(CC) $(CFLAGS) -c $(SRCDIR)/kmp.cc
+
+$(SRCDIR)/rabin_karp.o: $(SRCDIR)/rabin_karp.h $(SRCDIR)/rabin_karp.cc
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rabin_karp.cc
+
+.PHONY: clean
+
+clean:
+	rm *.o
+	rm gss
