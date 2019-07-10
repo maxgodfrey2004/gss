@@ -15,5 +15,10 @@
 CC=g++
 CFLAGS=-Wall -Wpedantic
 
+all: kmp.o rabin_karp.o
+
 kmp.o: kmp.h kmp.cc
 	$(CC) $(CFLAGS) -c kmp.cc
+
+rabin_karp.o: rabin_karp.h rabin_karp.cc
+	$(CC) $(CFLAGS) -c rabin_karp.cc
