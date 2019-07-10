@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Local executables produced by make
+gss
