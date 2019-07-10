@@ -45,6 +45,7 @@ void CheckArgv(char **arg_start, char **arg_end) {
     std::cerr << "ERROR: incorrect number of arguments.\n"
               << "Execute `gss --help` for more info."
               << std::endl;
+    exit(EXIT_FAILURE);
   }
 }
 

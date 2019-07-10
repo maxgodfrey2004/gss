@@ -13,12 +13,9 @@
 # limitations under the License.
 
 CC=g++
-CFLAGS := -Wall -Wextra -Wpedantic -std=c++11
+CFLAGS := -Wall -Wextra -Wpedantic -O2 -std=c++11
 
 SRCDIR := src
-
-CC=g++
-CFLAGS=-Wall -Wpedantic
 
 all: gss
 
