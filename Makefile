@@ -19,8 +19,11 @@ SRCDIR := src
 
 all: gss
 
-gss: main.h main.cc $(SRCDIR)/kmp.o $(SRCDIR)/rabin_karp.o
-	$(CC) $(CFLAGS) -o gss main.cc kmp.o rabin_karp.o
+gss: main.h main.cc $(SRCDIR)/fileutils.o $(SRCDIR)/kmp.o $(SRCDIR)/rabin_karp.o
+	$(CC) $(CFLAGS) -o gss main.cc fileutils.o kmp.o rabin_karp.o
+
+$(SRCDIR)/fileutils.o: $(SRCDIR)/fileutils.h $(SRCDIR)/fileutils.cc
+	$(CC) $(CFLAGS) -c $(SRCDIR)/fileutils.cc
 
 $(SRCDIR)/kmp.o: $(SRCDIR)/kmp.h $(SRCDIR)/kmp.cc
 	$(CC) $(CFLAGS) -c $(SRCDIR)/kmp.cc
