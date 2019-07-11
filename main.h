@@ -15,11 +15,27 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
-#include <fstream>
-#include <iostream>
 #include <string>
 
 namespace cli {
+namespace color {
+
+const std::string RESET = "\033[0m";
+const std::string RED = "\033[31m";
+
+}  // namespace color
+
+namespace matching {
+
+// Prints all occurrences of a pattern in a file. Note that we assume the file
+// exists, and is accessible in the implementation.
+//
+// Args:
+//   - filename: string, the name of the file we are searching.
+//   - pattern: string, the pattern we are searching for.
+void Match(std::string filename, std::string pattern);
+
+}  // namespace matching
 
 // Checks whether a specified file is accessible given the permissions assigned
 // to the program.
