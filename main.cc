@@ -18,6 +18,7 @@
 #include <cstdlib>
 
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <vector>
 
@@ -25,6 +26,40 @@
 #include "src/rabin_karp.h"
 
 namespace cli {
+namespace matching {
+
+void Match(std::string filename, std::string pattern) {
+  std::ifstream infile(filename);
+  std::string line;
+  std::vector<int> occurrences;
+  int pattern_length = static_cast<int>(pattern.length());
+  int line_idx;
+  int line_length;
+
+  while (std::getline(infile, line)) {
+    occurrences = gss::kmp::FindMatches(line, pattern);
+    if (!occurrences.empty()) {
+      line_idx = 0;
+      line_length = static_cast<int>(line.length());
+      for (int occ_idx : occurrences) {
+        for (; line_idx < occ_idx; ++line_idx) {
+          std::cout << line[line_idx];
+        }
+        std::cout << color::RED;
+        for (; line_idx < occ_idx + pattern_length; ++line_idx) {
+          std::cout << line[line_idx];
+        }
+        std::cout << color::RESET;
+      }
+      for (; line_idx < line_length; ++line_idx) {
+        std::cout << line[line_idx];
+      }
+      std::cout << std::endl;
+    }
+  }
+}
+
+}  // namespace matching
 
 inline void CheckAccessible(const char *filename) {
   struct stat buffer;
@@ -74,6 +109,7 @@ int main(int argc, char *argv[]) {
 
   std::string filename(argv[1]);
   std::string search_pattern(argv[2]);
+  cli::matching::Match(filename, search_pattern);
 
   return EXIT_SUCCESS;
 }
