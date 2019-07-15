@@ -38,3 +38,6 @@ __pycache__/
 
 # Local executables produced by make
 gss
+
+# Local files produced by benchmarking utils
+generate_out.txt

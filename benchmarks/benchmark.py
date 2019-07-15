@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Benchmarks bench and gss
+"""Benchmarks grep and gss.
 """
 
 from __future__ import absolute_import
@@ -98,6 +98,3 @@ def benchmark_all(filename, lines, columns, lengths):
             print('gss ran faster')
         else:
             print('grep and gss have equal runtimes')
-
-if __name__ == '__main__':
-    benchmark_all('out.txt', 10, 10, [1, 2, 3, 4, 5])
